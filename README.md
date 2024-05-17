@@ -1,1 +1,0 @@
-# korocupFrontend2024
