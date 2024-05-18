@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
 
 type Props = {
@@ -7,17 +7,17 @@ type Props = {
   Id: string;
 };
 
-type Json = {
+type ImageData = {
   width: number;
   height: number;
   image: string;
 };
 
 const Work: React.FC<Props> = ({ Image, Id }: Props) => {
-  const [data, setData] = useState<Json>();
+  const [data, setData] = useState<ImageData>();
   useLayoutEffect(() => {
-    const Json: Json = JSON.parse(Image);
-    setData(Json);
+    const imageData: ImageData = JSON.parse(Image);
+    setData(imageData);
   }, []);
 
   useEffect(() => {
