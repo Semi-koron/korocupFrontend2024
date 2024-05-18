@@ -25,8 +25,8 @@ const login = async () => {
 
 export default function Home() {
   const [makeMode, setMakeMode] = useState<boolean>(false);
-  const [selectWidth, setSelectWidth] = useState<number>(300);
-  const [selectHeight, setSelectHeight] = useState<number>(300);
+  const [selectWidth, setSelectWidth] = useState<number>(550);
+  const [selectHeight, setSelectHeight] = useState<number>(550);
 
   const router = useRouter();
 
