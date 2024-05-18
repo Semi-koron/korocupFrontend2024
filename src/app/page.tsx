@@ -1,3 +1,5 @@
+
+import Likebutton from "./components/buttons/LIkebutton/page";
 "use client";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { getAuth } from "firebase/auth";
@@ -14,6 +16,7 @@ export default function Home() {
   return (
     <>
       <h1>Hello World</h1>
+      <Likebutton />
     </>
   );
 }
