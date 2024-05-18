@@ -12,6 +12,18 @@ import Link from "next/link";
 import buttons from "./components/buttons/editbutton/page";
 import Profilebutton from "./components/buttons/icon.profilebutton/page";
 import Work from "./components/work/page";
+import { push } from "firebase/database";
+
+type workData = {
+  ID: number;
+  UserName: string;
+  Image: string;
+  Reply: number;
+  Like: number;
+  CreatedAt: string;
+  UpdatedAt: string;
+  DeletedAt: string;
+};
 
 const auth = getAuth(app);
 
@@ -19,6 +31,7 @@ export default function Home() {
   const [makeMode, setMakeMode] = useState<boolean>(false);
   const [selectWidth, setSelectWidth] = useState<number>(550);
   const [selectHeight, setSelectHeight] = useState<number>(550);
+  const [work, setWork] = useState<workData[]>([]);
 
   useEffect(() => {
     fetchWork();
@@ -53,11 +66,11 @@ export default function Home() {
         },
         body: JSON.stringify({ token: token }),
       });
-      const data = await res.json();
-      console.log(data);
-      if (data.status !== "ok") {
+      if (res.status === 401) {
         router.push("/pages/editprofile");
       }
+      const data: workData[] = await res.json();
+      console.log(data);
     };
     postToken();
   };
@@ -71,6 +84,7 @@ export default function Home() {
     });
     const data = await res.json();
     console.log(data);
+    setWork(data);
   };
   return (
     <>
@@ -84,6 +98,13 @@ export default function Home() {
       >
         投稿する
       </button>
+      <div>
+        {work.map((data: workData) => {
+          return (
+            <Work Image={data.Image} Id={data.ID.toString()} key={data.ID} />
+          );
+        })}
+      </div>
       <Modal
         isOpen={makeMode}
         style={modalstyle}
