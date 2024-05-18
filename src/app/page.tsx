@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { app } from "./firebase/firebase";
 import Link from "next/link";
 
+
 const auth = getAuth(app);
 
 const login = async () => {
