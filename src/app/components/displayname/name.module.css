@@ -1,0 +1,9 @@
+.kennsaku_bar {
+  border: solid 1px #42733f;
+  text-align: center;
+  background-color: #eef0ed;
+  border-radius: 30px;
+  width: 150px;
+  height: 35px;
+  display: flex;
+}
