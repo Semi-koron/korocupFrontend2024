@@ -3,42 +3,46 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
 
 type Props = {
-  Image: string;
-  Id: string;
+  image: string;
+  id: string;
 };
 
 type ImageData = {
   width: number;
   height: number;
-  image: string;
+  image: any;
 };
 
-const Work: React.FC<Props> = ({ Image, Id }: Props) => {
-  const [data, setData] = useState<ImageData>();
+const Work: React.FC<Props> = ({ image, id }) => {
+  const [data, setData] = useState<ImageData | null>(null);
+
   useLayoutEffect(() => {
-    const imageData: ImageData = JSON.parse(Image);
-    setData(imageData);
-  }, []);
+    try {
+      const imageData: ImageData = JSON.parse(image);
+      setData(imageData);
+    } catch (error) {
+      console.error("Invalid image data:", error);
+    }
+  }, [image]);
 
   useEffect(() => {
     if (data) {
-      const canvasElement = document.getElementById(Id) as HTMLCanvasElement;
+      const canvasElement = document.getElementById(id) as HTMLCanvasElement;
       const canvas = new fabric.Canvas(canvasElement, {
-        width: data?.width,
-        height: data?.height,
+        width: data.width,
+        height: data.height,
       });
-      canvas.loadFromJSON(data?.image, () => {
+      canvas.loadFromJSON(data.image, () => {
         canvas.renderAll();
       });
     }
-  }, [data]);
+  }, [data, id]);
 
   return (
-    <>
-      <div>
-        <canvas id={Id}></canvas>
-      </div>
-    </>
+    <div>
+      <canvas id={id}></canvas>
+    </div>
   );
 };
+
 export default Work;
