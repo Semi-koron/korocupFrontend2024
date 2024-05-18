@@ -1,11 +1,11 @@
-import SearchIcon from "@mui/icons-material/Search";
-import Styles from "./search.module.css";
+import HomeIcon from "@mui/icons-material/Home";
+import Styles from "./../page.module.css";
 
-export default function Searchbar() {
+export default function Homebutton() {
   return (
     <>
       <button className={Styles.button}>
-        <SearchIcon
+        <HomeIcon
           style={{
             fontSize: 20,
             color: "#EEF0ED",
