@@ -4,6 +4,7 @@ import { getAuth } from "firebase/auth";
 import { app } from "./firebase/firebase";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Style from "./page.module.css";
 import { modalstyle } from "./components/modal/modal";
 import Modal from "react-modal";
@@ -13,7 +14,11 @@ const auth = getAuth(app);
 
 const login = async () => {
   const provider = new GoogleAuthProvider();
-  await signInWithPopup(auth, provider);
+  // トークンを取得
+  const result = await signInWithPopup(auth, provider);
+  //トークンをローカルに保存
+  localStorage.setItem("token", (await result.user.getIdTokenResult()).token);
+  console.log(result);
 };
 
 export default function Home() {
@@ -21,6 +26,18 @@ export default function Home() {
   const [selectWidth, setSelectWidth] = useState<number>(300);
   const [selectHeight, setSelectHeight] = useState<number>(300);
 
+  const router = useRouter();
+
+  const handleWidth = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectWidth(Number(e.target.value));
+  };
+  const handleHaight = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectHeight(Number(e.target.value));
+  };
+
+  const makeCanvas = () => {
+    router.push(`/pages/painting?width=${selectWidth}&height=${selectHeight}`);
+  };
   return (
     <>
       <h1>Hello World</h1>
@@ -44,18 +61,18 @@ export default function Home() {
           <h2>キャンバスのサイズを選択してください</h2>
           <div>
             <div>width</div>
-            <input type="range" />
+            <input type="range" min={200} max={900} onChange={handleWidth} />
             <span>{selectWidth}px</span>
           </div>
           <div>
             <div>height</div>
-            <input type="range" />
+            <input type="range" min={200} max={900} onChange={handleHaight} />
 
-            <span>{selectWidth}px</span>
+            <span>{selectHeight}px</span>
           </div>
         </div>
         <div className={Style.select_button}>
-          <button>投稿</button>
+          <button onClick={makeCanvas}>キャンバスを作製する</button>
         </div>
       </Modal>
     </>

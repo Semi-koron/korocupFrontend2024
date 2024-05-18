@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
 
@@ -8,21 +9,36 @@ const CanvasId: string = "canvas";
 export default function Home() {
   const [brushColor, setBrushColor] = useState<string>("blue");
   const [brushWidth, setBrushWidth] = useState<number>(10);
+  const [canvasWidth, setCanvasWidth] = useState<number>(300);
+  const [canvasHeight, setCanvasHeight] = useState<number>(300);
+  const [getParams, setParams] = useState<boolean>(false);
   const canvasRef = useRef<fabric.Canvas | null>(null);
 
-  useEffect(() => {
-    const canvasElement = document.getElementById(
-      CanvasId
-    ) as HTMLCanvasElement;
-    const canvas = new fabric.Canvas(canvasElement, {
-      isDrawingMode: true,
-      backgroundColor: "white",
-      width: 800,
-      height: 600,
-    });
-    canvas.freeDrawingBrush.width = 10;
-    canvasRef.current = canvas;
+  useLayoutEffect(() => {
+    const width = Number(new URLSearchParams(location.search).get("width"));
+    const height = Number(new URLSearchParams(location.search).get("height"));
+    if (300 <= width && width <= 900 && 300 <= height && height <= 900) {
+      setCanvasWidth(width);
+      setCanvasHeight(height);
+      setParams(true);
+    }
   }, []);
+
+  useEffect(() => {
+    if (getParams) {
+      const canvasElement = document.getElementById(
+        CanvasId
+      ) as HTMLCanvasElement;
+      const canvas = new fabric.Canvas(canvasElement, {
+        isDrawingMode: true,
+        backgroundColor: "white",
+        width: canvasWidth,
+        height: canvasHeight,
+      });
+      canvas.freeDrawingBrush.width = 10;
+      canvasRef.current = canvas;
+    }
+  }, [canvasWidth, canvasHeight]);
 
   useEffect(() => {
     if (canvasRef.current) {
