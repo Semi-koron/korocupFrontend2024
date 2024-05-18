@@ -32,6 +32,9 @@ const login = async () => {
     });
     const data = await res.json();
     console.log(data);
+    if (data.status !== "ok") {
+      router.push("/pages/editprofile");
+    }
   };
   postToken();
 };
