@@ -1,8 +1,6 @@
 "use client";
 import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
-import { set } from "firebase/database";
-import { json } from "stream/consumers";
 
 type Props = {
   Image: string;
@@ -15,7 +13,7 @@ type Json = {
   image: string;
 };
 
-const Work: React.FC<Props> = ({ Image, Id }) => {
+export const Work: React.FC<Props> = ({ Image, Id }) => {
   const [data, setData] = useState<Json>();
   useLayoutEffect(() => {
     const Json: Json = JSON.parse(Image);
@@ -43,4 +41,3 @@ const Work: React.FC<Props> = ({ Image, Id }) => {
     </>
   );
 };
-export default Work;
