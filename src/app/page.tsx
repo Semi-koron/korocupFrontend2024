@@ -10,7 +10,7 @@ import { modalstyle } from "./components/modal/modal";
 import Modal from "react-modal";
 import Link from "next/link";
 import buttons from "./components/buttons/editbutton/page";
-import Profilebutton from "./components/buttons/icon.profilebutton/page";
+import Decidebutton from "./components/buttons/decidebutton/page";
 
 const auth = getAuth(app);
 
@@ -77,6 +77,7 @@ export default function Home() {
           <button onClick={makeCanvas}>キャンバスを作製する</button>
         </div>
       </Modal>
+      <Decidebutton />
     </>
   );
 }
