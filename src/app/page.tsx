@@ -101,7 +101,7 @@ export default function Home() {
       <div>
         {work.map((data: workData) => {
           return (
-            <Work Image={data.Image} Id={data.ID.toString()} key={data.ID} />
+            <Work image={data.Image} id={data.ID.toString()} key={data.ID} />
           );
         })}
       </div>
