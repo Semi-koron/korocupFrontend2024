@@ -22,7 +22,7 @@ const login = async () => {
   localStorage.setItem("token", (await result.user.getIdTokenResult()).token);
   const postToken = async () => {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:8080/auth/create/user", {
+    const res = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -106,6 +106,27 @@ const CanvasComponent = () => {
     }
   };
 
+  const post = async () => {
+    if (canvasRef.current) {
+      const token = localStorage.getItem("token");
+      const img = canvasRef.current.toJSON();
+      const res = await fetch("http://localhost:8080/create/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          image: img,
+          reply: 0,
+          likes: 0,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    }
+  };
+
   return (
     <>
       <h1>お絵描きページ</h1>
@@ -135,6 +156,7 @@ const CanvasComponent = () => {
       <span>{brushWidth}</span>
       <button onClick={clearCanvas}>クリア</button>
       <button onClick={toJson}>toJson</button>
+      <button onClick={post}>投稿する</button>
     </>
   );
 };
