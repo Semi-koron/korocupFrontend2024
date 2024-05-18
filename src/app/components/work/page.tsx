@@ -13,7 +13,7 @@ type Json = {
   image: string;
 };
 
-export const Work: React.FC<Props> = ({ Image, Id }) => {
+const Work: React.FC<Props> = ({ Image, Id }: Props) => {
   const [data, setData] = useState<Json>();
   useLayoutEffect(() => {
     const Json: Json = JSON.parse(Image);
@@ -41,3 +41,4 @@ export const Work: React.FC<Props> = ({ Image, Id }) => {
     </>
   );
 };
+export default Work;
