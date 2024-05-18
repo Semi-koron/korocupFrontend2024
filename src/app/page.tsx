@@ -11,6 +11,7 @@ import Modal from "react-modal";
 import Link from "next/link";
 import buttons from "./components/buttons/editbutton/page";
 import Profilebutton from "./components/buttons/icon.profilebutton/page";
+import Work from "./components/work/page";
 
 const auth = getAuth(app);
 
@@ -65,6 +66,7 @@ export default function Home() {
       >
         投稿する
       </button>
+      <Work />
       <Modal
         isOpen={makeMode}
         style={modalstyle}
