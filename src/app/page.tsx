@@ -8,6 +8,7 @@ import Comentbutton from "./components/buttons/comentbutton/page";
 import Downloadbutton from "./components/buttons/downloadbutton/page";
 import Searchbar from "./components/buttons/searchbar/page";
 import Homebutton from "./components/buttons/homebutton/page";
+import ArrowBackIcon from "./components/buttons/backbutton/page";
 
 const auth = getAuth(app);
 
@@ -25,6 +26,7 @@ export default function Home() {
       <Downloadbutton />
       <Searchbar />
       <Homebutton />
+      <ArrowBackIcon />
     </>
   );
 }
