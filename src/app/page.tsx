@@ -1,4 +1,4 @@
-import Likebutton from "./components/like_button/test";
+import Likebutton from "./components/buttons/LIkebutton/page";
 
 export default function Home() {
   return (
