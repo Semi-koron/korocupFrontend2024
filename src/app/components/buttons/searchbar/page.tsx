@@ -8,7 +8,7 @@ export default function Searchbar() {
         <SearchIcon
           style={{
             fontSize: 20,
-            color: "#EEF0ED",
+            color: "#42733f",
           }}
         />
       </button>

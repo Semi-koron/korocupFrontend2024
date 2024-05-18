@@ -4,6 +4,7 @@
   height: 100%;
   border: none;
   background-color: transparent;
+  outline: none;
 }
 .searchbar {
   border: solid 1px #42733f;
