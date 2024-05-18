@@ -1,12 +1,12 @@
 "use client";
-import { use, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
 
 const CanvasId: string = "canvas";
 
-export default function Home() {
+const CanvasComponent = () => {
   const [brushColor, setBrushColor] = useState<string>("#000000");
   const [brushWidth, setBrushWidth] = useState<number>(10);
   const [canvasWidth, setCanvasWidth] = useState<number>(0);
@@ -136,5 +136,13 @@ export default function Home() {
       <button onClick={clearCanvas}>クリア</button>
       <button onClick={toJson}>toJson</button>
     </>
+  );
+};
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CanvasComponent />
+    </Suspense>
   );
 }
