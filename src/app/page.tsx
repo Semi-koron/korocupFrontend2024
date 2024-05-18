@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 import { app } from "./firebase/firebase";
 import Link from "next/link";
 import buttons from "./components/buttons/editbutton/page";
-import Profilebutton from "./components/buttons/icon.profilebutton/page";
+import Canvasbutton from "./components/buttons/canvasbutton/page";
 
 const auth = getAuth(app);
 
@@ -19,7 +19,7 @@ export default function Home() {
       <h1>Hello World</h1>
       <Link href="pages/painting">Painting</Link>
       <button onClick={login}>login</button>
-      <Profilebutton />
+      <Canvasbutton />
     </>
   );
 }
