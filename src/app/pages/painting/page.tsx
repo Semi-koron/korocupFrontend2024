@@ -1,12 +1,5 @@
 "use client";
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  Suspense,
-  use,
-} from "react";
+import { useEffect, useLayoutEffect, useRef, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
