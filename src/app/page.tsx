@@ -11,6 +11,7 @@ import Homebutton from "./components/buttons/homebutton/page";
 import ArrowBackIcon from "./components/buttons/backbutton/page";
 import Kensakubar from "./components/buttons/kennsakubar/page";
 import Drawbutton from "./components/buttons/drawbutton/page";
+import Editbutton from "./components/buttons/editbutton/page";
 
 const auth = getAuth(app);
 
@@ -31,6 +32,7 @@ export default function Home() {
       <ArrowBackIcon />
       <Kensakubar />
       <Drawbutton />
+      <Editbutton />
     </>
   );
 }
