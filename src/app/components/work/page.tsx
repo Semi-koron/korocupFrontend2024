@@ -2,18 +2,18 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
 
-type Props = {
+interface Props {
   image: string;
   id: string;
-};
+}
 
-type ImageData = {
+interface ImageData {
   width: number;
   height: number;
   image: any;
-};
+}
 
-const Work: React.FC<Props> = ({ image, id }) => {
+const Work: React.FC<Props> = ({ image, id }: Props) => {
   const [data, setData] = useState<ImageData | null>(null);
 
   useLayoutEffect(() => {
