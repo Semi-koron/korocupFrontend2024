@@ -9,6 +9,7 @@ import Downloadbutton from "./components/buttons/downloadbutton/page";
 import Searchbar from "./components/buttons/searchbar/page";
 import Homebutton from "./components/buttons/homebutton/page";
 import ArrowBackIcon from "./components/buttons/backbutton/page";
+import Kensakubar from "./components/buttons/kennsakubar/page";
 
 const auth = getAuth(app);
 
@@ -27,6 +28,7 @@ export default function Home() {
       <Searchbar />
       <Homebutton />
       <ArrowBackIcon />
+      <Kensakubar />
     </>
   );
 }
