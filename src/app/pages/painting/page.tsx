@@ -2,27 +2,24 @@
 import { use, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
-import { SprayBrush } from "fabric/fabric-impl";
 import Style from "./page.module.css";
-import { set } from "firebase/database";
-import { clear } from "console";
 
 const CanvasId: string = "canvas";
 
 export default function Home() {
   const [brushColor, setBrushColor] = useState<string>("#000000");
   const [brushWidth, setBrushWidth] = useState<number>(10);
-  const [canvasWidth, setCanvasWidth] = useState<number>(550);
-  const [canvasHeight, setCanvasHeight] = useState<number>(550);
+  const [canvasWidth, setCanvasWidth] = useState<number>(0);
+  const [canvasHeight, setCanvasHeight] = useState<number>(0);
   const [getParams, setParams] = useState<boolean>(false);
   const [penMode, setPenMode] = useState<string>("pencil");
   const canvasRef = useRef<fabric.Canvas | null>(null);
 
   const router = useRouter();
+  const width: number = Number(useSearchParams().get("width"));
+  const height: number = Number(useSearchParams().get("height"));
 
   useLayoutEffect(() => {
-    const width = Number(new URLSearchParams(location.search).get("width"));
-    const height = Number(new URLSearchParams(location.search).get("height"));
     if (300 <= width && width <= 900 && 300 <= height && height <= 900) {
       setCanvasWidth(width);
       setCanvasHeight(height);
@@ -59,18 +56,6 @@ export default function Home() {
         canvasRef.current.freeDrawingBrush.color = "#ffffff";
         canvasRef.current.freeDrawingBrush.width = brushWidth;
       } else {
-        if (penMode === "spray") {
-          // スプレーブラシに変更
-          canvasRef.current.freeDrawingBrush = new fabric.SprayBrush(
-            canvasRef.current
-          );
-        }
-        if (penMode === "circle") {
-          // 円に変更
-          canvasRef.current.freeDrawingBrush = new fabric.CircleBrush(
-            canvasRef.current
-          );
-        }
         if (penMode === "pencil") {
           // ペンに変更
           canvasRef.current.freeDrawingBrush = new fabric.PencilBrush(
@@ -128,24 +113,10 @@ export default function Home() {
       <canvas id={CanvasId} className={Style.canvas}></canvas>
       <button
         onClick={() => {
-          setPenMode("circle");
-        }}
-      >
-        円
-      </button>
-      <button
-        onClick={() => {
           setPenMode("pencil");
         }}
       >
         ペン
-      </button>
-      <button
-        onClick={() => {
-          setPenMode("spray");
-        }}
-      >
-        スプレー
       </button>
       <button
         onClick={() => {
