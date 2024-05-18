@@ -1,5 +1,12 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState, Suspense } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  Suspense,
+  use,
+} from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
@@ -110,14 +117,22 @@ const CanvasComponent = () => {
     if (canvasRef.current) {
       const token = localStorage.getItem("token");
       const img = canvasRef.current.toJSON();
-      const res = await fetch("http://localhost:8080/create/post", {
+      const canvasData = {
+        image: img,
+        height: canvasHeight,
+        width: canvasWidth,
+      };
+      const strCanvasData = JSON.stringify(canvasData);
+      const username: string = "test";
+      const res = await fetch("http://localhost:8080/auth/create/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: "Bearer " + token,
         },
         body: JSON.stringify({
-          image: img,
+          username: username,
+          image: `${strCanvasData}`,
           reply: 0,
           likes: 0,
         }),
