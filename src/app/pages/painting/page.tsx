@@ -1,5 +1,12 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState, Suspense } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  Suspense,
+  use,
+} from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
@@ -106,6 +113,35 @@ const CanvasComponent = () => {
     }
   };
 
+  const post = async () => {
+    if (canvasRef.current) {
+      const token = localStorage.getItem("token");
+      const img = canvasRef.current.toJSON();
+      const canvasData = {
+        image: img,
+        height: canvasHeight,
+        width: canvasWidth,
+      };
+      const strCanvasData = JSON.stringify(canvasData);
+      const username: string = "test";
+      const res = await fetch("http://localhost:8080/auth/create/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          username: username,
+          image: `${strCanvasData}`,
+          reply: 0,
+          likes: 0,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    }
+  };
+
   return (
     <>
       <h1>お絵描きページ</h1>
@@ -135,6 +171,7 @@ const CanvasComponent = () => {
       <span>{brushWidth}</span>
       <button onClick={clearCanvas}>クリア</button>
       <button onClick={toJson}>toJson</button>
+      <button onClick={post}>投稿する</button>
     </>
   );
 };

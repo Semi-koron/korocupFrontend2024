@@ -15,32 +15,14 @@ import Work from "./components/work/page";
 
 const auth = getAuth(app);
 
-const login = async () => {
-  const provider = new GoogleAuthProvider();
-  // トークンを取得
-  const result = await signInWithPopup(auth, provider);
-  //トークンをローカルに保存
-  localStorage.setItem("token", (await result.user.getIdTokenResult()).token);
-  const postToken = async () => {
-    const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:8080/auth/create/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({ token: token }),
-    });
-    const data = await res.json();
-    console.log(data);
-  };
-  postToken();
-};
-
 export default function Home() {
   const [makeMode, setMakeMode] = useState<boolean>(false);
   const [selectWidth, setSelectWidth] = useState<number>(550);
   const [selectHeight, setSelectHeight] = useState<number>(550);
+
+  useEffect(() => {
+    fetchWork();
+  }, []);
 
   const router = useRouter();
 
@@ -54,6 +36,42 @@ export default function Home() {
   const makeCanvas = () => {
     router.push(`/pages/painting?width=${selectWidth}&height=${selectHeight}`);
   };
+
+  const login = async () => {
+    const provider = new GoogleAuthProvider();
+    // トークンを取得
+    const result = await signInWithPopup(auth, provider);
+    //トークンをローカルに保存
+    localStorage.setItem("token", (await result.user.getIdTokenResult()).token);
+    const postToken = async () => {
+      const token = localStorage.getItem("token");
+      const res = await fetch("http://localhost:8080/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({ token: token }),
+      });
+      const data = await res.json();
+      console.log(data);
+      if (data.status !== "ok") {
+        router.push("/pages/editprofile");
+      }
+    };
+    postToken();
+  };
+
+  const fetchWork = async () => {
+    const res = await fetch("http://localhost:8080/get/posts", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   return (
     <>
       <h1>Hello World</h1>
@@ -66,7 +84,6 @@ export default function Home() {
       >
         投稿する
       </button>
-      <Work />
       <Modal
         isOpen={makeMode}
         style={modalstyle}
