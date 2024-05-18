@@ -6,6 +6,7 @@ import buttons from "./page.module.css";
 import Likebutton from "./components/buttons/LIkebutton/page";
 import Comentbutton from "./components/buttons/comentbutton/page";
 import Downloadbutton from "./components/buttons/downloadbutton/page";
+import Searchbar from "./components/buttons/searchbar/page";
 
 const auth = getAuth(app);
 
@@ -21,6 +22,7 @@ export default function Home() {
       <Likebutton />
       <Comentbutton />
       <Downloadbutton />
+      <Searchbar />
     </>
   );
 }
