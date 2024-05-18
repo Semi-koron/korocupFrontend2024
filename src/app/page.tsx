@@ -9,6 +9,8 @@ import Style from "./page.module.css";
 import { modalstyle } from "./components/modal/modal";
 import Modal from "react-modal";
 import Link from "next/link";
+import buttons from "./components/buttons/editbutton/page";
+import Profilebutton from "./components/buttons/icon.profilebutton/page";
 
 const auth = getAuth(app);
 
