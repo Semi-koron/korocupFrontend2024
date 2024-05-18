@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import Sikaku from "../../components/sikaku/page";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
 
@@ -65,6 +66,8 @@ export default function Home() {
       <input type="color" onChange={handleColorChange} value={brushColor} />
       <canvas id={CanvasId} className={Style.canvas}></canvas>
       <button onClick={toJson}>toJson</button>
+
+      <Sikaku color={brushColor} />
     </>
   );
 }
