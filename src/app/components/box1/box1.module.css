@@ -1,0 +1,11 @@
+.box1 {
+  background-color: #d3edd2;
+  border: 1px solid #ccc;
+  display: flex;
+  width: 70%;
+  height: 40px;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 10px;
+  align-items: center;
+}
