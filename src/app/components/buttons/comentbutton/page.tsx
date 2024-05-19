@@ -1,7 +1,7 @@
 import MmsIcon from "@mui/icons-material/Mms";
 import Styles from "./../page.module.css";
 
-export default function Commentbutton({ onClick }: { onClick: () => void }) {
+export default function Commentbutton() {
   return (
     <>
       <button className={Styles.button}>
