@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import Styles from "./page.module.css";
 import Work from "@/app/components/work/work";
 import Backbutton from "@/app/components/buttons/backbutton/back";
@@ -16,7 +17,7 @@ type workData = {
   DeletedAt: string;
 };
 
-export default function Home() {
+const Workdisplay = () => {
   const [work, setWork] = useState<any>();
   const router = useRouter();
   //クエリパラメータから取得
@@ -54,4 +55,12 @@ export default function Home() {
       </>
     );
   }
+};
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Workdisplay />
+    </Suspense>
+  );
 }
