@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { push } from "firebase/database";
 import Style from "./page.module.css";
 import { ClassNames } from "@emotion/react";
 
@@ -22,8 +21,8 @@ export default function Home() {
         Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
-        user_id: user_id,
-        icon: 0,
+        user_name: user_id,
+        icon: null,
         profile: 0,
       }),
     });
