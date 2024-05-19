@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
+import { NextPage } from "next";
 
 interface WorkProps {
   image: string;
@@ -13,7 +14,7 @@ interface ImageData {
   image: any;
 }
 
-const Work: React.FC<WorkProps> = ({ image, id }: WorkProps) => {
+const Work: NextPage<WorkProps> = ({ image, id }: WorkProps) => {
   const [data, setData] = useState<ImageData | null>(null);
 
   useLayoutEffect(() => {
