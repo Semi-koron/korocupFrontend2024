@@ -9,3 +9,30 @@
   justify-content: space-around;
   align-items: center;
 }
+.modal_section {
+  display: flex;
+  height: 70%;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+}
+
+.modal_section div {
+  text-align: center;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.modal_section h2 {
+  text-align: center;
+  margin: 0;
+  font-size: 19px;
+}
+
+.modal_section span {
+  padding: 0 20px;
+  text-align: right;
+}

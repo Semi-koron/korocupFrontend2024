@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
 import { styleText } from "util";
+import { set } from "firebase/database";
 
 const CanvasId: string = "canvas";
 
@@ -12,6 +13,7 @@ const CanvasComponent = () => {
   const [brushWidth, setBrushWidth] = useState<number>(10);
   const [canvasWidth, setCanvasWidth] = useState<number>(0);
   const [canvasHeight, setCanvasHeight] = useState<number>(0);
+  const [reply, setreply] = useState<number>(0);
   const [getParams, setParams] = useState<boolean>(false);
   const [penMode, setPenMode] = useState<string>("pencil");
   const canvasRef = useRef<fabric.Canvas | null>(null);
@@ -19,7 +21,7 @@ const CanvasComponent = () => {
   const router = useRouter();
   const width: number = Number(useSearchParams().get("width"));
   const height: number = Number(useSearchParams().get("height"));
-  let worldID: number = Number(useSearchParams().get("worldID"));
+  const workID: number = Number(useSearchParams().get("workId"));
 
   useLayoutEffect(() => {
     if (300 <= width && width <= 900 && 300 <= height && height <= 900) {
@@ -45,6 +47,8 @@ const CanvasComponent = () => {
       });
       canvas.freeDrawingBrush.width = 10;
       canvasRef.current = canvas;
+
+      setreply(workID);
     }
   }, [canvasWidth, canvasHeight]);
 
@@ -119,9 +123,6 @@ const CanvasComponent = () => {
       };
       const strCanvasData = JSON.stringify(canvasData);
       const username: string = "test";
-      if (worldID === undefined) {
-        worldID = 0;
-      }
       const res = await fetch("http://localhost:8080/auth/create/post", {
         method: "POST",
         headers: {
@@ -131,8 +132,8 @@ const CanvasComponent = () => {
         body: JSON.stringify({
           username: username,
           image: `${strCanvasData}`,
-          reply: worldID,
           likes: 0,
+          reply: reply,
         }),
       });
       const data = await res.json();

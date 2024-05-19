@@ -20,7 +20,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         user_name: user_id,
-        icon: 0,
+        icon: null,
         profile: 0,
       }),
     });
