@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { push } from "firebase/database";
 
 export default function Home() {
   const [user_id, setUser_id] = useState<string>("");
@@ -20,7 +19,7 @@ export default function Home() {
         Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
-        user_id: user_id,
+        user_name: user_id,
         icon: 0,
         profile: 0,
       }),
