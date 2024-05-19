@@ -2,7 +2,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
 
-interface Props {
+interface WorkProps {
   image: string;
   id: string;
 }
@@ -13,7 +13,7 @@ interface ImageData {
   image: any;
 }
 
-const Work: React.FC<Props> = ({ image, id }: Props) => {
+const Work: React.FC<WorkProps> = ({ image, id }: WorkProps) => {
   const [data, setData] = useState<ImageData | null>(null);
 
   useLayoutEffect(() => {
