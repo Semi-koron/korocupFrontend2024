@@ -33,7 +33,9 @@ export default function Work({ Image, Id }: { Image: string; Id: string }) {
         <Link href={`/pages/workpage?workID=${Id}`}>
           <canvas id={Id}></canvas>
         </Link>
-        {downloadElement && <Box1 canvasElement={downloadElement} />}
+        {downloadElement && (
+          <Box1 canvasElement={downloadElement} workID={Id} />
+        )}
       </div>
     </>
   );
