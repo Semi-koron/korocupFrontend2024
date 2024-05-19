@@ -1,24 +1,13 @@
 "use client";
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
+import Box1 from "../box1/box1"; // Fix: Import the default export from './../box1/page'
 import { fabric } from "fabric";
-import { set } from "firebase/database";
-import { json } from "stream/consumers";
+import Style from "./page.module.css";
 
-type Props = {
-  Image: string;
-  Id: string;
-};
-
-type Json = {
-  width: number;
-  height: number;
-  image: string;
-};
-
-const Work: React.FC<Props> = ({ Image, Id }) => {
-  const [data, setData] = useState<Json>();
+export default function Work({ Image, Id }: { Image: string; Id: string }) {
+  const [data, setData] = useState<any>();
   useLayoutEffect(() => {
-    const Json: Json = JSON.parse(Image);
+    const Json: any = JSON.parse(Image);
     setData(Json);
   }, []);
 
@@ -37,10 +26,10 @@ const Work: React.FC<Props> = ({ Image, Id }) => {
 
   return (
     <>
-      <div>
+      <div className={Style.work}>
         <canvas id={Id}></canvas>
+        <Box1 />
       </div>
     </>
   );
-};
-export default Work;
+}

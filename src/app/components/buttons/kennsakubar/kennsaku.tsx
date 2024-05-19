@@ -2,7 +2,7 @@ import MmsIcon from "@mui/icons-material/Mms";
 import Styles from "./kennsakubar.module.css";
 import React from "react";
 import { Search } from "@mui/icons-material";
-import Searchbar from "../searchbar/page";
+import Searchbar from "../searchbar/searchbar";
 
 export default function Kensakubar() {
   return (

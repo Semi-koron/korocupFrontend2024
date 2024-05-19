@@ -9,10 +9,11 @@ import Style from "./page.module.css";
 import { modalstyle } from "./components/modal/modal";
 import Modal from "react-modal";
 import Link from "next/link";
-import buttons from "./components/buttons/editbutton/page";
-import Profilebutton from "./components/buttons/icon.profilebutton/page";
-import Work from "./components/work/page";
-import { push } from "firebase/database";
+import buttons from "./components/buttons/editbutton/editbutton";
+import Profilebutton from "./components/buttons/iconprofilebutton/icon";
+import Work from "./components/work/work";
+import { push, set } from "firebase/database";
+import Drawbutton from "./components/buttons/drawbutton/draw";
 
 type workData = {
   ID: number;
@@ -75,6 +76,10 @@ export default function Home() {
     postToken();
   };
 
+  const change = () => {
+    setMakeMode(true);
+  };
+
   const fetchWork = async () => {
     const res = await fetch("http://localhost:8080/get/posts", {
       method: "GET",
@@ -88,17 +93,18 @@ export default function Home() {
   };
   return (
     <>
-      <h1>Hello World</h1>
-      <Link href="pages/painting">Painting</Link>
+      <div className={Style.headers}>
+        <h1>Be fiction</h1>
+        <div>
+          <Drawbutton
+            onClick={() => {
+              change();
+            }}
+          />
+        </div>
+      </div>
       <button onClick={login}>login</button>
-      <button
-        onClick={() => {
-          setMakeMode(true);
-        }}
-      >
-        投稿する
-      </button>
-      <div>
+      <div className={Style.worksList}>
         {work.map((data: workData) => {
           return (
             <Work Image={data.Image} Id={data.ID.toString()} key={data.ID} />
