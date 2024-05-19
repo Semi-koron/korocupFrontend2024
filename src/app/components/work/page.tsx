@@ -5,7 +5,7 @@ import { NextPage } from "next";
 
 interface WorkProps {
   image: string;
-  id: string;
+  id: number;
 }
 
 interface ImageData {
@@ -16,6 +16,7 @@ interface ImageData {
 
 const Work: NextPage<WorkProps> = ({ image, id }: WorkProps) => {
   const [data, setData] = useState<ImageData | null>(null);
+  const [ID, setID] = useState<string>(`${id}`);
 
   useLayoutEffect(() => {
     try {
@@ -28,7 +29,7 @@ const Work: NextPage<WorkProps> = ({ image, id }: WorkProps) => {
 
   useEffect(() => {
     if (data) {
-      const canvasElement = document.getElementById(id) as HTMLCanvasElement;
+      const canvasElement = document.getElementById(ID) as HTMLCanvasElement;
       const canvas = new fabric.Canvas(canvasElement, {
         width: data.width,
         height: data.height,
@@ -37,11 +38,11 @@ const Work: NextPage<WorkProps> = ({ image, id }: WorkProps) => {
         canvas.renderAll();
       });
     }
-  }, [data, id]);
+  }, [data, ID]);
 
   return (
     <div>
-      <canvas id={id}></canvas>
+      <canvas id={ID}></canvas>
     </div>
   );
 };

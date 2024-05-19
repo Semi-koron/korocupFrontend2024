@@ -100,9 +100,7 @@ export default function Home() {
       </button>
       <div>
         {work.map((data: workData) => {
-          return (
-            <Work image={data.Image} id={data.ID.toString()} key={data.ID} />
-          );
+          return <Work image={data.Image} id={data.ID} key={data.ID} />;
         })}
       </div>
       <Modal
