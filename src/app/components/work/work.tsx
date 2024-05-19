@@ -7,6 +7,7 @@ import Link from "next/link";
 
 export default function Work({ Image, Id }: { Image: string; Id: string }) {
   const [data, setData] = useState<any>();
+  const [downloadElement, setDownloadElement] = useState<HTMLCanvasElement>();
   useLayoutEffect(() => {
     const Json: any = JSON.parse(Image);
     setData(Json);
@@ -15,6 +16,7 @@ export default function Work({ Image, Id }: { Image: string; Id: string }) {
   useEffect(() => {
     if (data) {
       const canvasElement = document.getElementById(Id) as HTMLCanvasElement;
+      setDownloadElement(canvasElement);
       const canvas = new fabric.Canvas(canvasElement, {
         width: data?.width,
         height: data?.height,
@@ -31,7 +33,7 @@ export default function Work({ Image, Id }: { Image: string; Id: string }) {
         <Link href={`/pages/workpage?workID=${Id}`}>
           <canvas id={Id}></canvas>
         </Link>
-        <Box1 />
+        {downloadElement && <Box1 canvasElement={downloadElement} />}
       </div>
     </>
   );
