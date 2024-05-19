@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Style from "./page.module.css";
+import { ClassNames } from "@emotion/react";
 
 export default function Home() {
   const [user_id, setUser_id] = useState<string>("");
@@ -39,13 +41,18 @@ export default function Home() {
   return (
     <>
       <h1>ユーザー作成</h1>
-      <input
-        type="text"
-        value={user_id}
-        onChange={handleChange}
-        placeholder="ディスプレイネームを入力"
-      />
-      <button onClick={send}>送信</button>
+      <div className={Style.headers}>
+        <input
+          type="text"
+          value={user_id}
+          onChange={handleChange}
+          placeholder="ディスプレイネームを入力"
+          className={Style.input}
+        />
+        <button onClick={send} className={Style.button}>
+          送信
+        </button>
+      </div>
     </>
   );
 }
