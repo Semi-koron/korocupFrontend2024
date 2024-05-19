@@ -1,10 +1,10 @@
 import DownloadIcon from "@mui/icons-material/Download";
 import Styles from "./../page.module.css";
 
-export default function Downloadbutton() {
+export default function Downloadbutton({ onClick }: { onClick: () => void }) {
   return (
     <>
-      <button className={Styles.button}>
+      <button className={Styles.button} onClick={onClick}>
         <DownloadIcon
           style={{
             fontSize: 20,
