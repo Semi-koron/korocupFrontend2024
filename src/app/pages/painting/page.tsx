@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { fabric } from "fabric";
 import Style from "./page.module.css";
+import { styleText } from "util";
 
 const CanvasId: string = "canvas";
 
@@ -141,34 +142,86 @@ const CanvasComponent = () => {
 
   return (
     <>
-      <h1>お絵描きページ</h1>
-      <input type="color" onChange={handleColorChange} value={brushColor} />
-      <canvas id={CanvasId} className={Style.canvas}></canvas>
-      <button
-        onClick={() => {
-          setPenMode("pencil");
-        }}
-      >
-        ペン
-      </button>
-      <button
-        onClick={() => {
-          setPenMode("eraser");
-        }}
-      >
-        消しゴム
-      </button>
-      <input
-        type="range"
-        min={1}
-        max={50}
-        onChange={handlewidthChange}
-        value={brushWidth}
-      />
-      <span>{brushWidth}</span>
-      <button onClick={clearCanvas}>クリア</button>
-      <button onClick={toJson}>toJson</button>
-      <button onClick={post}>投稿する</button>
+      <h1 style={{ display: "flex", justifyContent: "center" }}>
+        お絵描きページ
+      </h1>
+      <div className={Style.waku}>
+        <canvas id={CanvasId} className={Style.canvas}></canvas>
+        <div className={Style.tools}>
+          <button
+            onClick={() => {
+              setPenMode("pencil");
+            }}
+            className={Style.eraser}
+          >
+            {" "}
+            <div
+              style={{
+                fontSize: 15,
+                color: "#EEF0ED",
+              }}
+            >
+              ペン
+            </div>
+          </button>
+          <button
+            onClick={() => {
+              setPenMode("eraser");
+            }}
+            className={Style.eraser}
+          >
+            {" "}
+            <div
+              style={{
+                fontSize: 15,
+                color: "#EEF0ED",
+              }}
+            >
+              消しゴム
+            </div>
+          </button>
+          <input
+            type="range"
+            min={1}
+            max={50}
+            onChange={handlewidthChange}
+            value={brushWidth}
+          />
+          <span>{brushWidth}</span>
+          <button onClick={clearCanvas} className={Style.eraser}>
+            <div
+              style={{
+                fontSize: 15,
+                color: "#EEF0ED",
+              }}
+            >
+              クリア
+            </div>
+          </button>
+          <button onClick={toJson} className={Style.eraser}>
+            <div
+              style={{
+                fontSize: 15,
+                color: "#EEF0ED",
+              }}
+            >
+              toJson
+            </div>
+          </button>
+
+          <input type="color" onChange={handleColorChange} value={brushColor} />
+          <button onClick={post} className={Style.eraser}>
+            <div
+              style={{
+                fontSize: 15,
+                color: "#EEF0ED",
+              }}
+            >
+              投稿する
+            </div>
+          </button>
+        </div>
+      </div>
     </>
   );
 };
