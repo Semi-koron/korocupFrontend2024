@@ -3,6 +3,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import Box1 from "../box1/box1"; // Fix: Import the default export from './../box1/page'
 import { fabric } from "fabric";
 import Style from "./page.module.css";
+import Link from "next/link";
 
 export default function Work({ Image, Id }: { Image: string; Id: string }) {
   const [data, setData] = useState<any>();
@@ -27,7 +28,9 @@ export default function Work({ Image, Id }: { Image: string; Id: string }) {
   return (
     <>
       <div className={Style.work}>
-        <canvas id={Id}></canvas>
+        <Link href={`/pages/workpage?workID=${Id}`}>
+          <canvas id={Id}></canvas>
+        </Link>
         <Box1 />
       </div>
     </>

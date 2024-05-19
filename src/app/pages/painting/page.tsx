@@ -18,6 +18,7 @@ const CanvasComponent = () => {
   const router = useRouter();
   const width: number = Number(useSearchParams().get("width"));
   const height: number = Number(useSearchParams().get("height"));
+  let worldID: number = Number(useSearchParams().get("worldID"));
 
   useLayoutEffect(() => {
     if (300 <= width && width <= 900 && 300 <= height && height <= 900) {
@@ -117,6 +118,9 @@ const CanvasComponent = () => {
       };
       const strCanvasData = JSON.stringify(canvasData);
       const username: string = "test";
+      if (worldID === undefined) {
+        worldID = 0;
+      }
       const res = await fetch("http://localhost:8080/auth/create/post", {
         method: "POST",
         headers: {
@@ -126,7 +130,7 @@ const CanvasComponent = () => {
         body: JSON.stringify({
           username: username,
           image: `${strCanvasData}`,
-          reply: 0,
+          reply: worldID,
           likes: 0,
         }),
       });

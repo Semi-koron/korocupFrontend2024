@@ -63,7 +63,7 @@ export default function Home() {
         },
         body: JSON.stringify({ token: token }),
       });
-      if (res.status === 401) {
+      if (res.status === 404) {
         router.push("/pages/editprofile");
       }
       const data: workData[] = await res.json();
