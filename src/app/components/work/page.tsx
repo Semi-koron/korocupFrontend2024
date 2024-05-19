@@ -2,7 +2,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { fabric } from "fabric";
 
-export interface Props {
+interface Props {
   image: string;
   id: string;
 }
