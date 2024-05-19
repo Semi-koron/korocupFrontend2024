@@ -11,7 +11,7 @@ import Modal from "react-modal";
 import Link from "next/link";
 import buttons from "./components/buttons/editbutton/page";
 import Profilebutton from "./components/buttons/icon.profilebutton/page";
-import Work from "./components/work/page";
+import Work from "./components/work/work";
 import { push, set } from "firebase/database";
 import Drawbutton from "./components/buttons/drawbutton/draw";
 

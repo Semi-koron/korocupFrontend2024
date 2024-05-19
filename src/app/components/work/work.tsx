@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useLayoutEffect } from "react";
-import Box1 from "./../box1/page"; // Fix: Import the default export from './../box1/page'
+import Box1 from "../box1/page"; // Fix: Import the default export from './../box1/page'
 import { fabric } from "fabric";
 import Style from "./page.module.css";
 
