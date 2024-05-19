@@ -13,6 +13,7 @@ import buttons from "./components/buttons/editbutton/page";
 import Profilebutton from "./components/buttons/icon.profilebutton/page";
 import Work from "./components/work/page";
 import { push } from "firebase/database";
+import Loginbutton from "./components/buttons/loginbutton/page";
 
 type workData = {
   ID: number;
@@ -130,6 +131,7 @@ export default function Home() {
           <button onClick={makeCanvas}>キャンバスを作製する</button>
         </div>
       </Modal>
+      <Loginbutton />
     </>
   );
 }
