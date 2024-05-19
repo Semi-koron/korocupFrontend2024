@@ -1,7 +1,7 @@
 import Styles from "./box1.module.css";
-import Likebutton from "../buttons/LIkebutton/page";
-import Commentbutton from "../buttons/comentbutton/page";
-import Downloadbutton from "../buttons/downloadbutton/page";
+import Likebutton from "../buttons/LIkebutton/like";
+import Commentbutton from "../buttons/comentbutton/comment";
+import Downloadbutton from "../buttons/downloadbutton/download";
 
 export default function Box1() {
   return (
