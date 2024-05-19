@@ -1,10 +1,10 @@
 import DrawIcon from "@mui/icons-material/Draw";
 import Styles from "./draw.module.css";
 
-export default function Drawbutton() {
+export default function Drawbutton({ onClick }: { onClick: () => void }) {
   return (
     <>
-      <button className={Styles.button}>
+      <button className={Styles.button} onClick={onClick}>
         <div className={Styles.draw}>お絵かき</div>
         <DrawIcon
           style={{

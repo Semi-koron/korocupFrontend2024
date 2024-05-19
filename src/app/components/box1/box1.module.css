@@ -1,11 +1,11 @@
 .box1 {
-  background-color: #d3edd2;
+  background-color: #42733f;
   border: 1px solid #ccc;
+  margin-top: 30px;
   display: flex;
-  width: 70%;
+  width: 100%;
   height: 40px;
   flex-direction: row;
   justify-content: space-around;
-  padding: 0 10px;
   align-items: center;
 }
